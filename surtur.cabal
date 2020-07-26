@@ -1,0 +1,67 @@
+cabal-version:       2.4
+name:                surtur
+version:             0.0.0.0
+synopsis:            See README for more info
+description:         See README for more info
+homepage:            https://github.com/Riuga/surtur
+bug-reports:         https://github.com/Riuga/surtur/issues
+license:             BSD-3-Clause
+license-file:        LICENSE
+author:              John M.
+maintainer:          John M. <riuga@tuta.io>
+copyright:           2020 John M.
+category:            Graphics
+build-type:          Simple
+extra-doc-files:     README.md
+                     CHANGELOG.md
+tested-with:         GHC == 8.8.3
+
+source-repository head
+  type:                git
+  location:            https://github.com/Riuga/surtur.git
+
+common common-options
+  build-depends:       base ^>= 4.13.0.0
+  
+  ghc-options:         -Wall
+                       -Wcompat
+                       -Widentities
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+  if impl(ghc >= 8.0)
+    ghc-options:       -Wredundant-constraints
+  if impl(ghc >= 8.2)
+    ghc-options:       -fhide-source-paths
+  if impl(ghc >= 8.4)
+    ghc-options:       -Wmissing-export-lists
+                       -Wpartial-fields
+  if impl(ghc >= 8.8)
+    ghc-options:       -Wmissing-deriving-strategies
+
+  default-language:    Haskell2010
+
+library
+  import:              common-options
+  hs-source-dirs:      src
+  exposed-modules:     Surtur
+
+test-suite surtur-test
+  import:              common-options
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       surtur
+  ghc-options:         -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
+
+benchmark surtur-benchmark
+  import:              common-options
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      benchmark
+  main-is:             Main.hs
+  build-depends:       gauge
+                     , surtur
+  ghc-options:         -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
