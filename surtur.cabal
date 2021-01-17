@@ -96,7 +96,7 @@ test-suite surtur-test
         -Wincomplete-record-updates -threaded -rtsopts -with-rtsopts=-N
 
     build-depends:
-        base >=4.13.0.0 && <5,
+        base >=4.14.0.0 && <5,
         vulkan -any,
         managed -any,
         critical -any,
@@ -134,7 +134,7 @@ benchmark surtur-benchmark
         -Wincomplete-record-updates -threaded -rtsopts -with-rtsopts=-N
 
     build-depends:
-        base >=4.13.0.0 && <5,
+        base >=4.14.0.0 && <5,
         vulkan -any,
         managed -any,
         critical -any,
